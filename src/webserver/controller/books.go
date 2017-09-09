@@ -4,6 +4,7 @@ import (
 	"html/template"
 	"net/http"
 	"webserver/viewModels"
+	"fmt"
 )
 
 type books struct {
@@ -16,5 +17,6 @@ func (b books) registerRoutes() {
 
 func (b books) handleBooks(w http.ResponseWriter, request *http.Request) {
 	vm := viewModels.NewBooks()
+	fmt.Println(vm)
 	b.booksTemplate.Execute(w, vm)
 }

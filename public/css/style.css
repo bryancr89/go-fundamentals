@@ -7,6 +7,7 @@ html, body {
 .book-container {
     padding: 20px;
     box-shadow: 0px 0px 6px 0px black;
+    margin-bottom: 15px;
 }
 
 .book-container:after {

@@ -7,19 +7,21 @@
     <link type="text/css" rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<div class="book-container">
-    <img src="{{.Img}}">
-    <h1>{{.Title}} (45)</h1>
-    <p><strong>Originally published:</strong> May 19, 2015</p>
-    <p>{{.Description}}</p>
-    <h3>Categories</h3>
-    <ul>
-        {{range .Categories}}
-        <li>
-            {{.Name}}
-        </li>
-        {{end}}
-    </ul>
-</div>
+{{range .Items}}
+    <div class="book-container">
+        <img src="{{.Img}}">
+        <h1>{{.Id}}. {{.Title}} (45)</h1>
+        <p><strong>Originally published:</strong> {{.Published}}</p>
+        <p>{{.Description}}</p>
+        <h3>Categories</h3>
+        <ul>
+            {{range .Categories}}
+            <li>
+                {{.Name}}
+            </li>
+            {{end}}
+        </ul>
+    </div>
+{{end}}
 </body>
 </html>
