@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{.Title}}</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="book-container">
+    <img src="{{.Img}}">
+    <h1>{{.Title}} (45)</h1>
+    <p><strong>Originally published:</strong> May 19, 2015</p>
+    <p>{{.Description}}</p>
+    <h3>Categories</h3>
+    <ul>
+        {{range .Categories}}
+        <li>
+            {{.Name}}
+        </li>
+        {{end}}
+    </ul>
+</div>
+</body>
+</html>

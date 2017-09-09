@@ -1,4 +1,21 @@
 html, body {
     width: 80%;
     margin: 10px auto;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.book-container {
+    padding: 20px;
+    box-shadow: 0px 0px 6px 0px black;
+}
+
+.book-container:after {
+    content: '';
+    clear: both;
+    display: table;
+}
+
+.book-container img {
+    float: right;
+    width: 150px;
 }

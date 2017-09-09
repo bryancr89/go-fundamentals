@@ -7,11 +7,13 @@ import (
 
 var (
 	homeController home
+	booksController books
 )
 
 func Startup(template *template.Template) {
-	t := template.Lookup("home.html")
-	homeController.homeTemplate = t
+	homeController.homeTemplate = template.Lookup("home.html")
 	homeController.registerRoutes()
+	booksController.booksTemplate = template.Lookup("books.html")
+	booksController.registerRoutes()
 	http.Handle("/css/", http.FileServer(http.Dir("public")))
 }
