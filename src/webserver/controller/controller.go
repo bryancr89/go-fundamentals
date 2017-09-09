@@ -12,6 +12,7 @@ var (
 
 func Startup(template *template.Template) {
 	homeController.homeTemplate = template.Lookup("home.html")
+	homeController.loginTemplate = template.Lookup("login.html")
 	homeController.registerRoutes()
 	booksController.booksTemplate = template.Lookup("books.html")
 	booksController.registerRoutes()
