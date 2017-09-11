@@ -23,6 +23,11 @@ func (b books) registerRoutes() {
 }
 
 func (b books) handleBooks(w http.ResponseWriter, request *http.Request) {
+	if pusher, ok := w.(http.Pusher); ok {
+		pusher.Push("/css/style.css", &http.PushOptions{
+			Header: http.Header{"Content-Type": []string{"text/css"}},
+		})
+	}
 	bookPattern, _ := regexp.Compile(`/books/(\d+)`)
 	matches := bookPattern.FindStringSubmatch(request.URL.Path)
 	w.Header().Add("Content-type", "text/html")
