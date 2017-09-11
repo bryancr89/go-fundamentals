@@ -13,3 +13,15 @@ func NewBooks(books []model.Book) BookVm {
 	}
 }
 
+type Category struct {
+	Name string
+}
+
+type Book struct {
+	Id int `json: "id"`
+	Title string `json: "title"`
+	Img string `json: "img"`
+	Categories[] Category `json: "categories"`
+	Description string `json: "description"`
+	Published string `json: "published"`
+}

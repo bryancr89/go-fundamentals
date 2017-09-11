@@ -17,4 +17,5 @@ func Startup(template *template.Template) {
 	booksController.booksTemplate = template.Lookup("books.html")
 	booksController.registerRoutes()
 	http.Handle("/css/", http.FileServer(http.Dir("public")))
+	http.Handle("/js/", http.FileServer(http.Dir("public")))
 }

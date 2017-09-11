@@ -4,13 +4,13 @@ import (
 	"html/template"
 	"net/http"
 	"webserver/controller"
+	"webserver/middleware"
 )
 
 func main() {
 	templates := populateTemplates()
 	controller.Startup(templates)
-
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":8000", new(middleware.GzipMiddleware))
 }
 
 func populateTemplates() *template.Template {

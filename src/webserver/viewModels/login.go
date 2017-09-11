@@ -1,8 +1,8 @@
 package viewModels
 
 type Login struct {
-	email string
-	password string
+	Email string
+	Password string
 }
 
 
