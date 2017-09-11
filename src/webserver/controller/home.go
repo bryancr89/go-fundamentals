@@ -6,6 +6,7 @@ import (
 	"webserver/viewModels"
 	"fmt"
 	"log"
+	"webserver/model"
 )
 
 type home struct {
@@ -34,12 +35,16 @@ func (h home) handleLogin(w http.ResponseWriter, r *http.Request) {
 		}
 		email := r.Form.Get("email")
 		password:= r.Form.Get("password")
-		if email == "foo@example.com" {
+
+		if user, err := model.Login(email, password); err == nil {
+			log.Printf("User has logged in: %v\n", user)
 			http.Redirect(w, r, "/home", http.StatusTemporaryRedirect)
 			return
+		} else {
+			log.Printf("Failed to log user in with email: %v, error was: %v\n", email, err)
+			vm.Email = email
+			vm.Password = password
 		}
-		vm.Email = email
-		vm.Password = password
 	}
 	w.Header().Add("Content-type", "text/html")
 	h.loginTemplate.Execute(w, vm)

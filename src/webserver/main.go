@@ -5,14 +5,30 @@ import (
 	"net/http"
 	"webserver/controller"
 	"webserver/middleware"
+	_ "github.com/lib/pq"
+	"database/sql"
+	"log"
+	"fmt"
+	"webserver/model"
 )
 
 func main() {
 	templates := populateTemplates()
+	db := connectToDatabase()
+	defer db.Close()
 	controller.Startup(templates)
 	http.ListenAndServe(":8000", &middleware.TimeoutMiddleware{
 		new(middleware.GzipMiddleware),
 	})
+}
+
+func connectToDatabase() *sql.DB {
+	db, err := sql.Open("postgres", "postgres://gotest:gotest@localhost/gotest?sslmode=disable")
+	if err != nil {
+		log.Fatalln(fmt.Errorf("unable to connect to database: %v", err))
+	}
+	model.SetDatabase(db)
+	return db
 }
 
 func populateTemplates() *template.Template {
